@@ -40,6 +40,94 @@
 	
 }
 
+
+		/* Track — a flex row that scroll-snaps. Works in every browser. */
+.cc-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+  anchor-name: --cc;
+
+  /* Auto-generate a dot per slide, placed after the track */
+  scroll-marker-group: after;
+}
+.cc-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.cc-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  border-radius: 16px;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dots — generated, no markup. Chromium 135+ */
+.cc-carousel::scroll-marker-group {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 16px;
+}
+.cc-slide::scroll-marker {
+  content: " ";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: color-mix(in srgb, #ff5b04 28%, transparent);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cc-slide::scroll-marker:target-current {
+  background: #ff5b04;
+}
+
+
+.cc-carousel::scroll-button(left),
+.cc-carousel::scroll-button(right) {
+  position: absolute;
+  position-anchor: --cc;
+  top: anchor(center);
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  color: #ff5b04;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.cc-carousel::scroll-button(left) {
+  left: calc(anchor(left) + 10px);
+  content: "\2039"; /* ‹ */
+}
+.cc-carousel::scroll-button(right) {
+  left: calc(anchor(right) - 54px);
+  content: "\203A"; /* › */
+}
+.cc-carousel::scroll-button(*):disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
 		.h4 { 
 				filter: drop-shadow(4px 4px 2px #11031a);				
 				color: white;	
@@ -270,7 +358,6 @@
 				
 			<h4 class="h4 block"; style="position: absolute; top: 2160px; left: 255px;"><p>Alpha Dan Clears! 3/4:</p></h4>
 			<h4 class="h4 block"; style="position: absolute; top: 2160px; right: 255px;"><p>Other Achievements!:</p></h4>
-				<img src="image_2026-10-17_183401381.png" alt="beta dan tech clear" width="1000" height="600"; class="block" style="position: absolute; top: 1400px; left: 450px; filter: drop-shadow(10px 10px 4px #11031a); border: 2px solid white; border-radius: 15px; border-width: 05px 05px 5px 5px";>
 				<img src="MedalTVosu20260903194917942.png" alt="alpha dan jacks clear" width="500" height="300"; class="block" style="position: absolute; top: 2300px; left: 150px; filter: drop-shadow(10px 10px 4px #11031a); border: 2px solid white; border-radius: 15px; border-width: 05px 05px 5px 5px";>
 				<img src="MedalTVosu20260905173714012.png" alt="alpha dan speed clear" width="500" height="300"; class="block" style="position: absolute; top: 2700px; left: 150px; filter: drop-shadow(10px 10px 4px #11031a); border: 2px solid white; border-radius: 15px; border-width: 05px 05px 5px 5px";>
 				<img src="MedalTVosu20260905174913679.png" alt ="alpha dan tech clear" width="500" height="300"; class="block" style="position: absolute; top: 3100px; left: 150px; filter: drop-shadow(10px 10px 4px #11031a); border: 2px solid white; border-radius: 15px; border-width: 05px 05px 5px 5px";>
@@ -285,6 +372,12 @@
 			<div class="block"><img src="https://mania-tracker.com/api/signature/1vzlL7onRt1pcsUBy5lLwJLe2NBRYv0n/dan-skillsets.png"; style="position: relative; top: 250px; left: 500px; filter: drop-shadow(10px 10px 4px #11031a); border: 2px solid white; border-radius: 15px; border-width: 05px 5px 5px 5px";></div>
 			<div class="block"><img src="https://mania-tracker.com/api/signature/1vzlL7onRt1pcsUBy5lLwJLe2NBRYv0n/maniacard-card-front.png"; style="position: relative; top: 5000px; left: 1000px; filter: drop-shadow(10px 10px 4px #11031a); border: 2px solid white; border-radius: 15px; border-width: 05px 5px 5px 5px";></div>
 
+
+			<ul class="cc-carousel">
+									  <li class="cc-slide"><img src="image_2026-10-17_183401381.png" alt="beta dan tech clear" width="1000" height="600"; class="block" style="position: absolute; top: 1400px; left: 450px; filter: drop-shadow(10px 10px 4px #11031a); border: 2px solid white; border-radius: 15px; border-width: 05px 05px 5px 5px";></li>
+									  <li class="cc-slide"><img src="screenshot366.jpg" alt="beta dan tech clear" width="1000" height="600"; class="block" style="position: absolute; top: 1400px; left: 450px; filter: drop-shadow(10px 10px 4px #11031a); border: 2px solid white; border-radius: 15px; border-width: 05px 05px 5px 5px";></li>
+									  <li class="cc-slide"><img src="screenshot367.jpg" alt="beta dan tech clear" width="1000" height="600"; class="block" style="position: absolute; top: 1400px; left: 450px; filter: drop-shadow(10px 10px 4px #11031a); border: 2px solid white; border-radius: 15px; border-width: 05px 05px 5px 5px";></li>
+			</ul>
 
 					
 </div>
