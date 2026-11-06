@@ -40,101 +40,6 @@
 	
 }
 
-.carousel { position: relative; }
-.carousel-track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
-.carousel-track::-webkit-scrollbar { display: none; }
-.carousel-slide {
-  position: relative;
-  display: flex;
-  flex: 0 0 100%;
-  align-items: flex-end;
-  min-height: 280px;
-  scroll-snap-align: start;
-  padding: 24px;
-  color: #fff;
-}
-.carousel-slide img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.carousel-slide h2 {
-  position: relative;
-  margin: 0;
-  font: 600 28px/1.2 system-ui, sans-serif;
-  text-shadow: 0 1px 2px rgb(0 0 0 / 45%);
-}
-.carousel-prev, .carousel-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  border: 0;
-  border-radius: 999px;
-  background: #fff;
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-}
-.carousel-prev { left: 12px; }
-.carousel-next { right: 12px; }
-.carousel-dots {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 12px;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-.carousel-dots button {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 55%);
-  cursor: pointer;
-}
-.carousel-dots button[aria-current="true"] { background: #fff; }
-</style>
-<script>
-(() => {
-  const root = document.querySelector('.carousel');
-  const track = root.querySelector('.carousel-track');
-  const slides = [...track.children];
-  const dots = [...root.querySelectorAll('.carousel-dots button')];
-  let index = 0;
-
-  function go(next) {
-    index = (next + slides.length) % slides.length;
-    track.scrollTo({ left: index * track.clientWidth, behavior: 'smooth' });
-    dots.forEach((dot, dotIndex) => {
-      if (dotIndex === index) dot.setAttribute('aria-current', 'true');
-      else dot.removeAttribute('aria-current');
-    });
-  }
-
-  root.querySelector('.carousel-prev')?.addEventListener('click', () => go(index - 1));
-  root.querySelector('.carousel-next')?.addEventListener('click', () => go(index + 1));
-  dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => go(dotIndex)));
-
-  const delay = Number(root.dataset.autoplay);
-  if (delay > 0 && slides.length > 1) {
-    setInterval(() => go(index + 1), delay);
-  }
-})();
-
-
 		.h4 { 
 				filter: drop-shadow(4px 4px 2px #11031a);				
 				color: white;	
@@ -386,42 +291,8 @@
 		<div data-aos="fade-up" data-aos-anchor-placement="top-center"><img src="Joker-Scroll Down!.png" width="750" height="300"; style="position: absolute; top: 676px; left: 600px; filter: drop-shadow(10px 10px 4px #11031a)";></div>
 		<p></p>
 	
-
-
-	
-<div class="carousel-track">
-    <section class="carousel-slide" style="background:#1c1917">
-      <img src="screenshot366.jpg" alt="">
-      <h2>First slide</h2>
-    </section>
-    <section class="carousel-slide" style="background:#44403c">
-      <img src="screenshot367.jpg" alt="">
-      <h2>Second slide</h2>
-    </section>
-    <section class="carousel-slide" style="background:#78716c">
-      <img src="image_2026-10-17_183401381.png" alt="">
-      <h2>Third slide</h2>
-    </section>
-  </div>
-  <button class="carousel-prev" type="button" aria-label="Previous slide">‹</button>
-  <button class="carousel-next" type="button" aria-label="Next slide">›</button>
-  <div class="carousel-dots">
-    <button type="button" aria-label="Go to slide 1" aria-current="true"></button>
-    <button type="button" aria-label="Go to slide 2"></button>
-    <button type="button" aria-label="Go to slide 3"></button>
-  </div>
-    
 			
-
-			
-	
-			
-			
-			<script src="https://unpkg.com"></script>
-		
-			<script>
- 						 AOS.init();
-			</script>		
+				
 	</body>
 
 
